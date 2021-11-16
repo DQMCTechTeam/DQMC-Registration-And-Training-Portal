@@ -1,6 +1,6 @@
 import { Fragment } from "react";
 
-const Body = () => {
+const Body = (props) => {
   return (
     <Fragment>
       <div class="container">
@@ -9,6 +9,7 @@ const Body = () => {
           <div class="col-md-12">
             <div class="panel">
               <div class="panel-body">
+                {props.showLinks && (<div>
                 <h2>This site contains:</h2>
                 <ul>
                   <li>
@@ -20,6 +21,7 @@ const Body = () => {
                     </a>
                   </li>
                 </ul>
+                </div>)}
               </div>
             </div>
           </div>
