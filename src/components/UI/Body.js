@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Fragment } from "react";
 
 const Body = (props) => {
@@ -9,19 +10,21 @@ const Body = (props) => {
           <div class="col-md-12">
             <div class="panel">
               <div class="panel-body">
-                {props.showLinks && (<div>
-                <h2>This site contains:</h2>
-                <ul>
-                  <li>
-                    <a href="/questionnaire">DQMC Training Survey </a>
-                  </li>
-                  <li>
-                    <a href="/dqmcTrainingRegistration?form=newDQManager">
-                      DQMC Training Registration{" "}
-                    </a>
-                  </li>
-                </ul>
-                </div>)}
+                {props.showLinks && (
+                  <div>
+                    <h2>This site contains:</h2>
+                    <ul>
+                      <li>
+                        <Link to="/questionnaire">DQMC Training Survey </Link>
+                      </li>
+                      <li>
+                        <Link to="/dqmcTrainingRegistration?form=newDQManager">
+                          DQMC Training Registration{" "}
+                        </Link>
+                      </li>
+                    </ul>
+                  </div>
+                )}
               </div>
             </div>
           </div>

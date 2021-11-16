@@ -3,16 +3,14 @@ import Body from "../components/UI/Body";
 import Header from "../components/UI/Header";
 import Footer from "../components/UI/Footer";
 
-const Home = () => {
+const Questionnaire = () => {
   return (
     <Fragment>
-      <Header
-        title={"Data Quality Training Registration and Information 2021"}
-      />
-      <Body showLinks={true} />
+      <Header title={"DHA DQMC Training Course Questionnaire"} />
+      <Body showLinks={false} />
       <Footer />
     </Fragment>
   );
 };
 
-export default Home;
+export default Questionnaire;
