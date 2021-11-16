@@ -1,4 +1,3 @@
-/*jshint esversion: 6 */
 import { Fragment } from "react";
 
 const Body = () => {

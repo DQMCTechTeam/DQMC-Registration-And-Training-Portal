@@ -1,16 +1,12 @@
+import { Route } from "react-router-dom";
 import "./App.css";
-import Body from "./components/UI/Body";
-import Footer from "./components/UI/Footer";
-import Header from "./components/UI/Header";
-
+import DQMCTrainingRegistration from "./pages/DQMCTrainingRegistration";
 function App() {
   return (
     <div className="App">
-      <Header
-        title={"Data Quality Training Registration and Information 2021"}
-      />
-      <Body />
-      <Footer />
+      <Route path="/dqmcTrainingRegistration">
+        <DQMCTrainingRegistration />
+      </Route>
     </div>
   );
 }
