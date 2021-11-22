@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
+import Poam from './forms/Poam';
 
 const Body = (props) => {
   return (
@@ -25,6 +26,7 @@ const Body = (props) => {
                     </ul>
                   </div>
                 )}
+                {props.showPoam && (<Poam/>)}
               </div>
             </div>
           </div>

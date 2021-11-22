@@ -7,9 +7,9 @@ const POAMTracking = () => {
   return (
     <Fragment>
       <Header
-        title={"POAM 2021"}
+        title={"DQMC Plan of Action and Milestones (POA&M)"}
       />
-      <Body showlinks={false} />
+      <Body showlinks={false} showPoam={true} />
       <Footer/>
     </Fragment>
   );

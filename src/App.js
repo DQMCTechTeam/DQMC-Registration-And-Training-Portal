@@ -17,8 +17,9 @@ function App() {
         <POAMTracking />
       </Route>
       <Route path="/questionnaire">
-        <Questionnaire/>
+        <Questionnaire />
       </Route>
+
     </div>
   );
 }
