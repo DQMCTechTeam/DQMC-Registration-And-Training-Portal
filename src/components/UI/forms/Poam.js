@@ -44,8 +44,6 @@ const Poam = () => {
           <div class="col-md-2 col-sm-3">
             <input class="text-width" name="region" id="region" required />
           </div>
-        </div>
-        <div class="row">
           <div class="col-md-2 col-sm-3 text-left">
             <label for="site">* Site:</label>
           </div>
@@ -59,6 +57,7 @@ const Poam = () => {
             </select>
           </div>
         </div>
+        <div class="row"></div>
         <div class="row">
           <div class="col-md-2 col-sm-3 text-left">
             <label for="site">* Question:</label>

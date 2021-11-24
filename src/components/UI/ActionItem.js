@@ -37,8 +37,6 @@ const ActionItem=(props)=>{
                 value={props.officer}
               />
             </div>
-          </div>
-          <div class="row">
             <div class="col-md-2 col-sm-3 text-left">
               <label for="actionEstDate">Estimated Date: </label>
             </div>
@@ -53,6 +51,7 @@ const ActionItem=(props)=>{
               />
             </div>
           </div>
+          <div class="row"></div>
           <div class="row">
             <div class="col-md-2 col-sm-3 text-left">
               <label for="actionActDate">Actual Date: </label>
@@ -66,6 +65,8 @@ const ActionItem=(props)=>{
                 required
                 value={props.actualDate}
               />
+              <br />
+              <br />
             </div>
           </div>
         </Fragment>
