@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import Poam from './forms/Poam';
-
+import PoamCenValid from "./forms/PoamCenValid";
 const Body = (props) => {
   return (
     <Fragment>
@@ -27,6 +27,7 @@ const Body = (props) => {
                   </div>
                 )}
                 {props.showPoam && (<Poam/>)}
+                {props.showPoamCenValid && (<PoamCenValid/>)}
               </div>
             </div>
           </div>

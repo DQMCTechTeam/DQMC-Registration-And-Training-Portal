@@ -9,7 +9,8 @@ const DQMCTrainingRegistration = () => {
       <Header
         title={"Data Quality Training Registration and Information 2021"}
       />
-      <Body showLinks={false} />
+      <Body showLinks={false} showPoamCenValid={true} />
+
       <Footer />
     </Fragment>
   );
