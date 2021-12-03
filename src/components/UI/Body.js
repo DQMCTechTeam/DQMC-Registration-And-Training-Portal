@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import Poam from './forms/Poam';
 import PoamCenValid from "./forms/PoamCenValid";
+import Survey from "./forms/Survey";
+
 const Body = (props) => {
   return (
     <Fragment>
@@ -26,8 +28,9 @@ const Body = (props) => {
                     </ul>
                   </div>
                 )}
-                {props.showPoam && (<Poam/>)}
-                {props.showPoamCenValid && (<PoamCenValid/>)}
+                {props.showPoam && <Poam />}
+                {props.showPoamCenValid && <PoamCenValid />}
+                {props.showQuestionnare && <Survey/>}
               </div>
             </div>
           </div>

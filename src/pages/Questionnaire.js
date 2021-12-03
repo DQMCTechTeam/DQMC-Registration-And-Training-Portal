@@ -7,7 +7,7 @@ const Questionnaire = () => {
   return (
     <Fragment>
       <Header title={"DHA DQMC Training Course Questionnaire"} />
-      <Body showLinks={false} />
+      <Body showLinks={false} showQuestionnare={true} />
       <Footer />
     </Fragment>
   );
