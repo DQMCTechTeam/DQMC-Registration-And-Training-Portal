@@ -1,4 +1,4 @@
-import { Route } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
 import "./App.css";
 import DQMCTrainingRegistration from "./pages/DQMCTrainingRegistration";
 import Home from "./pages/Home";
@@ -7,6 +7,9 @@ import Questionnaire from "./pages/Questionnaire";
 function App() {
   return (
     <div className="App">
+      <Route exact path="/">
+        <Redirect to="/home" />
+      </Route>
       <Route path="/home">
         <Home />
       </Route>
@@ -19,7 +22,6 @@ function App() {
       <Route path="/questionnaire">
         <Questionnaire />
       </Route>
-
     </div>
   );
 }
