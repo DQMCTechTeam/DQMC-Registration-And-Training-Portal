@@ -8,6 +8,7 @@ const QuestionList = (props) => {
           question={question.question}
           options={question.options}
           answerType={question.answerType}
+          placeholder={question.placeholder}
         />
       ))}
     </div>

@@ -1,21 +1,77 @@
-import { Fragment } from "react";
+import { Fragment, useState, useCallback, useEffect } from "react";
 import QuestionList from "../QuestionList";
 
 const Survey = () => {
-  const questions = [
-    {
-      num: 0,
-      question: "What is one plus one?",
-      options: ["1", "4", "5", "2", "3"],
-      answerType: "text",
-    },
-    {
-      num: 1,
-      question: "What is two plus one?",
-      options: ["1", "4", "5", "2", "3"],
-      answerType:'text',
-    },
-  ];
+    const [questions, setQuestions] = useState([]);
+    const [isLoading, setIsLoading] = useState(false);
+    const [error, setError] = useState(null);
+
+      const fetchQuestionsHandler = useCallback(async () => {
+        setIsLoading(true);
+        setError(null);
+        try {
+          const response = await fetch(
+            "http://localhost:5000/apiValueBenefit/getQuestionnaire/"
+          );
+          if (!response.ok) {
+            throw new Error("Something went wrong!");
+          }
+
+          const data = await response.json();
+          const loadedQuestions = [];
+          for (const key in data.body) {
+            loadedQuestions.push({
+              id: key,
+              num: data.body[key].num,
+              question: data.body[key].question,
+              answerType: data.body[key].answerType,
+              placeholder:data.body[key].placeHolder,
+              options:data.body[key].options,
+            });
+          }
+
+          setQuestions(loadedQuestions);
+        } catch (error) {
+          setError(error.message);
+        }
+        setIsLoading(false);
+      }, []);
+
+      useEffect(() => {
+        fetchQuestionsHandler();
+      }, [fetchQuestionsHandler]);
+  // const questions = [
+  //   {
+  //     num: 0,
+  //     question: "What is one plus one?",
+  //     options: ["1", "4", "5", "2", "3"],
+  //     answerType: "text",
+  //     placeholder: "Please provide some examples",
+  //   },
+  //   {
+  //     num: 1,
+  //     question: "What is two plus one?",
+  //     options: ["1", "4", "5", "2", "3"],
+  //     answerType: "text",
+  //     placeholder: "Please provide some examples",
+  //   },
+  // ];
+  let content = '<p>Found no questions</p>'
+    if (error) {
+      content = <p>{error}</p>;
+    }
+
+  if (questions.length > 0) {
+    content = <QuestionList questions={questions} />;
+  }
+
+  if (error) {
+    content = <p>{error}</p>;
+  }
+
+  if (isLoading) {
+    content = <p>Loading...</p>;
+  }
   return (
     <Fragment>
       {/* First Name */}
@@ -132,7 +188,8 @@ const Survey = () => {
           </select>
         </div>
       </div>
-      <QuestionList questions={questions}/>
+      {/* <QuestionList questions={questions}/> */}
+      <section>{content}</section>
     </Fragment>
   );
 };
