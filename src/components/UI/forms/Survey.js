@@ -1,5 +1,21 @@
 import { Fragment } from "react";
+import QuestionList from "../QuestionList";
+
 const Survey = () => {
+  const questions = [
+    {
+      num: 0,
+      question: "What is one plus one?",
+      options: ["1", "4", "5", "2", "3"],
+      answerType: "text",
+    },
+    {
+      num: 1,
+      question: "What is two plus one?",
+      options: ["1", "4", "5", "2", "3"],
+      answerType:'text',
+    },
+  ];
   return (
     <Fragment>
       {/* First Name */}
@@ -116,6 +132,7 @@ const Survey = () => {
           </select>
         </div>
       </div>
+      <QuestionList questions={questions}/>
     </Fragment>
   );
 };
