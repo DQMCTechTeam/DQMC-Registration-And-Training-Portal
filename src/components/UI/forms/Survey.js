@@ -8,7 +8,28 @@ const isEmailValid = (value) =>
 const isPhoneValid = (value) =>
   isNotEmpty &&
   /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(value);
-
+const sites = ["MTF", "REGION", "OTSG", "DHA"];
+const roles = [
+  "DQ Manager",
+  "Alt DQ Manager",
+  "UBO",
+  "Coding / PAD",
+  "MEPRS / Finance",
+  "Information Management",
+  "Other",
+];
+const breakOutSession = [
+  "Review List Statement",
+  "GENESIS Review and Statement",
+  "CHCS and ADM - Achieving Data Quality Success",
+  "GENESIS Ambulatory Encounter Completion Report",
+  "Open Encounters",
+  "GENESIS Lifecycle Encounter",
+  "GTDQ and Workbook",
+  "GENESIS - Resources, References, and Miscellaneous Case Studies",
+  "Legacy Panel Discussion",
+  "GENESIS - MHS GENESIS DQM Panel Discussion",
+];
 const Survey = () => {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -98,16 +119,17 @@ const Survey = () => {
     reset: resetEmail,
   } = useInput(isEmailValid);
 
-    const {
-      value: phoneEntered,
-      isValid: phoneIsValid,
-      hasError: phoneHasError,
-      valueChangeHandler: phoneChangedHandler,
-      inputBlurHandler: phoneBlurHandler,
-      reset: resetPhone,
-    } = useInput(isPhoneValid);
+  const {
+    value: phoneEntered,
+    isValid: phoneIsValid,
+    hasError: phoneHasError,
+    valueChangeHandler: phoneChangedHandler,
+    inputBlurHandler: phoneBlurHandler,
+    reset: resetPhone,
+  } = useInput(isPhoneValid);
 
-  let formIsValid = firstNameIsValid && lastNameIsValid && emailIsValid && phoneIsValid;
+  let formIsValid =
+    firstNameIsValid && lastNameIsValid && emailIsValid && phoneIsValid;
 
   if (questions.length > 0) {
     content = (
@@ -151,6 +173,9 @@ const Survey = () => {
     ? "col-md-2 col-sm-3 invalid"
     : "col-md-2 col-sm-3";
 
+  const phoneClasses = phoneHasError
+    ? "col-md-2 col-sm-3 invalid"
+    : "col-md-2 col-sm-3";
   return (
     <Fragment>
       {/* First Name */}
@@ -226,7 +251,7 @@ const Survey = () => {
         <div class="col-md-2 col-sm-3 text-left">
           <label for="phone">* Phone:</label>
         </div>
-        <div class="col-md-2 col-sm-3 text-left">
+        <div className={phoneClasses}>
           <input
             class="text-width"
             name="phone"
@@ -252,10 +277,9 @@ const Survey = () => {
         <div class="col-md-2 col-sm-3 text-left">
           <select name="site" id="site" required>
             <option value="">Please Choose...</option>
-            <option value="MTF">MTF</option>
-            <option value="Region">Region</option>
-            <option value="OTSG">OTSG</option>
-            <option value="DHA">DHA</option>
+            {sites.map((option) => (
+              <option value={option}>{option}</option>
+            ))}
           </select>
         </div>
       </div>
@@ -266,15 +290,9 @@ const Survey = () => {
         <div class="col-md-2 col-sm-3 text-left">
           <select name="role" id="role" required>
             <option value="">Please Choose...</option>
-            <option value="DQ Manager">DQ Manager</option>
-            <option value="Alt DQ Manager">Alt DQ Manager</option>
-            <option value="UBO">UBO</option>
-            <option value="Coding / PAD">Coding / PAD</option>
-            <option value="MEPRS/Finance">MEPRS/Finance</option>
-            <option value="Information Management">
-              Information Management
-            </option>
-            <option value="Other">Other</option>
+            {roles.map((option) => (
+              <option value={option}>{option}</option>
+            ))}
           </select>
         </div>
       </div>
@@ -285,32 +303,9 @@ const Survey = () => {
         <div class="col-md-2 col-sm-3 text-left">
           <select name="Session" id="Session">
             <option value="">Please Choose (if applicable...)</option>
-            <option value="Review List and Statement">
-              Review List and Statement
-            </option>
-            <option value="GENESIS Review and Statement">
-              GENESIS Review and Statement
-            </option>
-            <option value="CHCS and ADM">
-              CHCS and ADM - Achieving Data Quality Success
-            </option>
-            <option value="GENESIS Ambulatory Encounter Completion Report">
-              GENESIS Ambulatory Encounter Completion Report
-            </option>
-            <option value="OPEN Encounters">OPEN Encounters</option>
-            <option value="GENSIS - Life Cycle of an Encounter">
-              GENSIS - Life Cycle of an Encounter
-            </option>
-            <option value="GTDQ and Workbook ">GTDQ and Workbook</option>
-            <option value="GENESIS - Resources, References, and Miscellaneous Case Studies">
-              GENESIS - Resources, References, and Miscellaneous Case Studies{" "}
-            </option>
-            <option value="Legacy Panel Discussion">
-              Legacy Panel Discussion
-            </option>
-            <option value="GENESIS - MHS GENESIS DQM Panel Discussion">
-              GENESIS - MHS GENESIS DQM Panel Discussion
-            </option>
+            {breakOutSession.map((option) => (
+              <option value={option}>{option}</option>
+            ))}{" "}
           </select>
         </div>
       </div>
