@@ -1,17 +1,24 @@
+import { Fragment } from "react";
 import Question from "./Question";
 const QuestionList = (props) => {
   return (
-    <div>
+    <Fragment>
       {props.questions.map((question) => (
-        <Question
-          num={question.num}
-          question={question.question}
-          options={question.options}
-          answerType={question.answerType}
-          placeholder={question.placeholder}
-        />
+          <Question
+          key={question.num}
+            num={question.num}
+            question={question.question}
+            options={question.options}
+            answerType={question.answerType}
+            placeholder={question.placeholder}
+          />
       ))}
-    </div>
+      <div class="row">
+        <div class="col-md-12">
+          <input name="timestamp" type="hidden" value="" />
+        </div>
+      </div>
+    </Fragment>
   );
 };
 

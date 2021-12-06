@@ -41,6 +41,12 @@ const Footer = () => {
               </ul>
             </div>
           </div>
+          <div class="col-sm-6">
+            <p>
+              Built with <i class="icon-heart-empty"></i> at{" "}
+              <a href="http://www.bootply.com">Bootply</a>
+            </p>
+          </div>
         </div>
       </footer>
     </Fragment>

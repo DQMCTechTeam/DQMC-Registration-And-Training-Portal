@@ -3,7 +3,7 @@ import { Fragment } from "react";
 import Poam from './forms/Poam';
 import PoamCenValid from "./forms/PoamCenValid";
 import Survey from "./forms/Survey";
-
+import './Body.css'
 const Body = (props) => {
   return (
     <Fragment>

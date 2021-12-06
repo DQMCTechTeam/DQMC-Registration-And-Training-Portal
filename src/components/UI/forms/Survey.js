@@ -1,68 +1,134 @@
 import { Fragment, useState, useCallback, useEffect } from "react";
 import QuestionList from "../QuestionList";
+import useInput from "../hooks/use-input";
+
+const isNotEmpty = (value) => value.trim() !== "";
+const isEmailValid = (value) =>
+  isNotEmpty && /^\w+([\\.-]?\w+)*@\w+([\\.-]?\w+)*(\.\w{2,3})+$/.test(value);
+const isPhoneValid = (value) =>
+  isNotEmpty &&
+  /^\(?([0-9]{3})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{4})$/.test(value);
 
 const Survey = () => {
-    const [questions, setQuestions] = useState([]);
-    const [isLoading, setIsLoading] = useState(false);
-    const [error, setError] = useState(null);
+  const [questions, setQuestions] = useState([]);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
 
-      const fetchQuestionsHandler = useCallback(async () => {
-        setIsLoading(true);
-        setError(null);
-        try {
-          const response = await fetch(
-            "http://localhost:5000/apiValueBenefit/getQuestionnaire/"
-          );
-          if (!response.ok) {
-            throw new Error("Something went wrong!");
-          }
+  const fetchQuestionsHandler = useCallback(async () => {
+    setIsLoading(true);
+    setError(null);
+    try {
+      const response = await fetch(
+        "http://localhost:5000/apiValueBenefit/getQuestionnaire/"
+      );
+      if (!response.ok) {
+        throw new Error("Something went wrong!");
+      }
 
-          const data = await response.json();
-          const loadedQuestions = [];
-          for (const key in data.body) {
-            loadedQuestions.push({
-              id: key,
-              num: data.body[key].num,
-              question: data.body[key].question,
-              answerType: data.body[key].answerType,
-              placeholder:data.body[key].placeHolder,
-              options:data.body[key].options,
-            });
-          }
+      const data = await response.json();
+      const loadedQuestions = [];
+      for (const key in data.body) {
+        loadedQuestions.push({
+          id: key,
+          num: data.body[key].num,
+          question: data.body[key].question,
+          answerType: data.body[key].answerType,
+          placeholder: data.body[key].placeHolder,
+          options: data.body[key].options,
+        });
+      }
 
-          setQuestions(loadedQuestions);
-        } catch (error) {
-          setError(error.message);
-        }
-        setIsLoading(false);
-      }, []);
+      setQuestions(loadedQuestions);
+    } catch (error) {
+      setError(error.message);
+    }
+    setIsLoading(false);
+  }, []);
 
-      useEffect(() => {
-        fetchQuestionsHandler();
-      }, [fetchQuestionsHandler]);
-  // const questions = [
-  //   {
-  //     num: 0,
-  //     question: "What is one plus one?",
-  //     options: ["1", "4", "5", "2", "3"],
-  //     answerType: "text",
-  //     placeholder: "Please provide some examples",
-  //   },
-  //   {
-  //     num: 1,
-  //     question: "What is two plus one?",
-  //     options: ["1", "4", "5", "2", "3"],
-  //     answerType: "text",
-  //     placeholder: "Please provide some examples",
-  //   },
-  // ];
-  let content = '<p>Found no questions</p>'
-    if (error) {
-      content = <p>{error}</p>;
+  useEffect(() => {
+    fetchQuestionsHandler();
+  }, [fetchQuestionsHandler]);
+
+  const submitFormHandler = (event) => {
+    console.log("form submitted!");
+    event.preventDefault();
+    if (!firstNameIsValid) {
+      return;
+    }
+    if (!lastNameIsValid) {
+      return;
+    }
+    if (!emailIsValid) {
+      return;
     }
 
+    resetFirstName();
+    resetLastName();
+    resetEmail();
+    resetPhone();
+  };
+  let content = "<p>Found no questions</p>";
+  if (error) {
+    content = <p>{error}</p>;
+  }
+  const {
+    value: firstNameEntered,
+    isValid: firstNameIsValid,
+    hasError: firstNameHasError,
+    valueChangeHandler: firstNameChangedHandler,
+    inputBlurHandler: firstNameBlurHandler,
+    reset: resetFirstName,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: lastNameEntered,
+    isValid: lastNameIsValid,
+    hasError: lastNameHasError,
+    valueChangeHandler: lastNameChangedHandler,
+    inputBlurHandler: lastNameBlurHandler,
+    reset: resetLastName,
+  } = useInput(isNotEmpty);
+
+  const {
+    value: emailEntered,
+    isValid: emailIsValid,
+    hasError: emailHasError,
+    valueChangeHandler: emailChangedHandler,
+    inputBlurHandler: emailBlurHandler,
+    reset: resetEmail,
+  } = useInput(isEmailValid);
+
+    const {
+      value: phoneEntered,
+      isValid: phoneIsValid,
+      hasError: phoneHasError,
+      valueChangeHandler: phoneChangedHandler,
+      inputBlurHandler: phoneBlurHandler,
+      reset: resetPhone,
+    } = useInput(isPhoneValid);
+
+  let formIsValid = firstNameIsValid && lastNameIsValid && emailIsValid && phoneIsValid;
+
   if (questions.length > 0) {
-    content = <QuestionList questions={questions} />;
+    content = (
+      <Fragment>
+        <form onSubmit={submitFormHandler}>
+          <QuestionList questions={questions} />
+          <div class="row">
+            <div class="col-md-12">
+              <br />
+              <input
+                disabled={!formIsValid}
+                class="btn btn-primary"
+                type="submit"
+                value="Submit"
+              />
+              <br />
+            </div>
+          </div>
+        </form>
+      </Fragment>
+    );
   }
 
   if (error) {
@@ -72,6 +138,19 @@ const Survey = () => {
   if (isLoading) {
     content = <p>Loading...</p>;
   }
+
+  const firstNameClasses = firstNameHasError
+    ? "col-md-2 col-sm-3 invalid"
+    : "col-md-2 col-sm-3";
+
+  const lastNameClasses = lastNameHasError
+    ? "col-md-2 col-sm-3 invalid"
+    : "col-md-2 col-sm-3";
+
+  const emailClasses = emailHasError
+    ? "col-md-2 col-sm-3 invalid"
+    : "col-md-2 col-sm-3";
+
   return (
     <Fragment>
       {/* First Name */}
@@ -79,30 +158,68 @@ const Survey = () => {
         <div class="col-md-2 col-sm-3 text-left">
           <label for="firstname">* First Name: </label>
         </div>
-        <div class="col-md-2 col-sm-3">
-          <input class="text-width" name="firstname" id="firstname" required />
+        <div className={firstNameClasses}>
+          <input
+            class="text-width"
+            name="firstname"
+            id="firstname"
+            value={firstNameEntered}
+            onChange={firstNameChangedHandler}
+            onBlur={firstNameBlurHandler}
+            required
+          />
+        </div>
+        <div>
+          {firstNameHasError && (
+            <p className="col-md-2 col-lg-3 text-left error-text">
+              Please enter a first name
+            </p>
+          )}
         </div>
       </div>
       <div class="row">
         <div class="col-md-2 col-sm-3 text-left">
           <label for="lastname">* Last Name:</label>
         </div>
-        <div class="col-md-2 col-sm-3 text-left">
-          <input class="text-width" name="lastname" id="lastname" required />
+        <div className={lastNameClasses}>
+          <input
+            class="text-width"
+            name="lastname"
+            id="lastname"
+            value={lastNameEntered}
+            onChange={lastNameChangedHandler}
+            onBlur={lastNameBlurHandler}
+          />
+        </div>
+        <div>
+          {lastNameHasError && (
+            <p className="col-md-2 col-lg-3 text-left error-text">
+              Please enter a last name
+            </p>
+          )}
         </div>
       </div>
       <div class="row">
         <div class="col-md-2 col-sm-3 text-left">
           <label for="email:">* Email:</label>
         </div>
-        <div class="col-md-2 col-sm-3 text-left">
+        <div className={emailClasses}>
           <input
             class="text-width"
             name="email"
             id="email"
             type="email"
-            required
+            onChange={emailChangedHandler}
+            onBlur={emailBlurHandler}
+            value={emailEntered}
           />
+        </div>
+        <div>
+          {emailHasError && (
+            <p className="col-md-2 col-lg-3 text-left error-text">
+              Please enter a valid email
+            </p>
+          )}
         </div>
       </div>
       <div class="row">
@@ -115,8 +232,17 @@ const Survey = () => {
             name="phone"
             id="phone"
             type="phone"
-            required
+            onChange={phoneChangedHandler}
+            onBlur={phoneBlurHandler}
+            value={phoneEntered}
           />
+        </div>
+        <div>
+          {phoneHasError && (
+            <p className="col-md-2 col-lg-3 text-left error-text">
+              Please enter a valid phone number
+            </p>
+          )}
         </div>
       </div>
       <div class="row">
@@ -188,7 +314,6 @@ const Survey = () => {
           </select>
         </div>
       </div>
-      {/* <QuestionList questions={questions}/> */}
       <section>{content}</section>
     </Fragment>
   );
