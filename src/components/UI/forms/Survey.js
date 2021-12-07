@@ -30,6 +30,8 @@ const breakOutSession = [
   "Legacy Panel Discussion",
   "GENESIS - MHS GENESIS DQM Panel Discussion",
 ];
+const isSiteValid = (value) => sites.includes(value);
+
 const Survey = () => {
   const [questions, setQuestions] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -87,6 +89,7 @@ const Survey = () => {
     resetLastName();
     resetEmail();
     resetPhone();
+    resetSite();
   };
   let content = "<p>Found no questions</p>";
   if (error) {
@@ -128,8 +131,21 @@ const Survey = () => {
     reset: resetPhone,
   } = useInput(isPhoneValid);
 
+  const {
+    value: siteEntered,
+    isValid: siteIsValid,
+    hasError: siteHasError,
+    valueChangeHandler: siteChangedHandler,
+    inputBlurHandler: siteBlurHandler,
+    reset: resetSite,
+  } = useInput(isSiteValid);
+
   let formIsValid =
-    firstNameIsValid && lastNameIsValid && emailIsValid && phoneIsValid;
+    firstNameIsValid &&
+    lastNameIsValid &&
+    emailIsValid &&
+    phoneIsValid &&
+    siteIsValid;
 
   if (questions.length > 0) {
     content = (
@@ -174,6 +190,10 @@ const Survey = () => {
     : "col-md-2 col-sm-3";
 
   const phoneClasses = phoneHasError
+    ? "col-md-2 col-sm-3 invalid"
+    : "col-md-2 col-sm-3";
+
+  const siteClasses = siteHasError
     ? "col-md-2 col-sm-3 invalid"
     : "col-md-2 col-sm-3";
   return (
@@ -274,13 +294,27 @@ const Survey = () => {
         <div class="col-md-2 col-sm-3 text-left">
           <label for="site">* Site:</label>
         </div>
-        <div class="col-md-2 col-sm-3 text-left">
-          <select name="site" id="site" required>
+        <div className={siteClasses}>
+          <select
+            onBlur={siteBlurHandler}
+            onChange={siteChangedHandler}
+            name="site"
+            id="site"
+            required
+            value={siteEntered}
+          >
             <option value="">Please Choose...</option>
             {sites.map((option) => (
               <option value={option}>{option}</option>
             ))}
           </select>
+        </div>
+        <div>
+          {siteHasError && (
+            <p className="col-md-2 col-lg-3 text-left error-text">
+              Please select a site
+            </p>
+          )}
         </div>
       </div>
       <div class="row">
