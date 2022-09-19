@@ -1,14 +1,27 @@
-import './App.css';
-import Body from './components/UI/Body';
-import Footer from './components/UI/Footer';
-import Header from './components/UI/Header';
-
+import { Route, Redirect } from "react-router-dom";
+import "./App.css";
+import DQMCTrainingRegistration from "./pages/DQMCTrainingRegistration";
+import Home from "./pages/Home";
+import POAMTracking from "./pages/POAMTracking";
+import Questionnaire from "./pages/Questionnaire";
 function App() {
   return (
     <div className="App">
-      <Header/>
-      <Body/>
-      <Footer/>
+      <Route exact path="/">
+        <Redirect to="/home" />
+      </Route>
+      <Route path="/home">
+        <Home />
+      </Route>
+      <Route path="/dqmcTrainingRegistration">
+        <DQMCTrainingRegistration />
+      </Route>
+      <Route path="/poamTracking">
+        <POAMTracking />
+      </Route>
+      <Route path="/questionnaire">
+        <Questionnaire />
+      </Route>
     </div>
   );
 }
