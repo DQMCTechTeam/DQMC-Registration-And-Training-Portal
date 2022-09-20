@@ -15,17 +15,8 @@ const Body = (props) => {
               <div class="panel-body">
                 {props.showLinks && (
                   <div>
-                    <h2>This site contains:</h2>
-                    <ul>
-                      <li>
-                        <Link to="/questionnaire">DQMC Training Survey </Link>
-                      </li>
-                      <li>
-                        <Link to="/dqmcTrainingRegistration?form=newDQManager">
-                          DQMC Training Registration{" "}
-                        </Link>
-                      </li>
-                    </ul>
+                    <h2>Login into your DQMC Training and Information Portal:</h2>
+
                   </div>
                 )}
                 {props.showPoam && <Poam />}
