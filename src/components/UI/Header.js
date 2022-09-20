@@ -51,6 +51,7 @@ const Header = (props) => {
                               </li>
                             </ul>
                       </li>
+                      <li><p className={classes.p}><a href="https://info.health.mil/bus/brm/dqmc/Documents/Management_Control/FY22/DHA%20DQMC%20User%27s%20Guide_FY22_V1.pdf">DQMC Users Guide</a></p></li>
                   </ul>
                   <h2 className={classes.h2}>Register for Training:</h2>
                   <ul>
