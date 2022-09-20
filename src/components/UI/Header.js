@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
+import classes from './Header.module.css'
 
 const Header = (props) => {
   return (
@@ -34,10 +35,10 @@ const Header = (props) => {
             <div class="col-md-7">
             <div class="panel">
               <div class="panel-body">
-                  <h2>Training Resources:</h2>
+                  <h2 className={classes.h2}>Training Resources:</h2>
                   <ul>
                       <li>
-                          <p>Adhoc Training Guides</p>
+                          <p className={classes.p}>Adhoc Training Guides</p>
                           <ul>
                               <li>
                                   <a href="https://kx.health.mil/kj/kx2/DataQuality/Documents/E.%20CHCS%20Adhocs/Adhoc%20Training%20Guides/Building%20GS%20BILLABLE%20APPTS%20adhocs.pdf">Building GS Billable APPTS adhocs</a>
@@ -51,7 +52,7 @@ const Header = (props) => {
                             </ul>
                       </li>
                   </ul>
-                  <h2>Register for Training:</h2>
+                  <h2 className={classes.h2}>Register for Training:</h2>
                   <ul>
                       <li>
                         <Link to="/dqmcTrainingRegistration?form=newDQManager">
@@ -59,7 +60,7 @@ const Header = (props) => {
                         </Link>
                       </li>
                     </ul>
-                    <h2>Complete Our Survey:</h2>
+                    <h2 className={classes.h2}>Complete Our Survey:</h2>
                   <ul>
                       <li>
                         <Link to="/questionnaire">DQMC Training Survey </Link>
