@@ -22,6 +22,9 @@ const Header = (props) => {
             <Link to="/home" class="navbar-brand">
               HOME
             </Link>
+            <a href="https://kx.health.mil/kj/kx2/DataQuality/Pages/home.aspx" class="navbar-brand" target="_blank" rel="noreferrer" >
+              Knowledge Exchange
+            </a>
           </div>
           <nav class="collapse navbar-collapse" role="navigation">
             <ul class="nav navbar-nav" style={{ paddingBottom: 5 }}></ul>
@@ -41,13 +44,13 @@ const Header = (props) => {
                           <p className={classes.p}>Adhoc Training Guides</p>
                           <ul>
                               <li>
-                                  <a href="https://kx.health.mil/kj/kx2/DataQuality/Documents/E.%20CHCS%20Adhocs/Adhoc%20Training%20Guides/Building%20GS%20BILLABLE%20APPTS%20adhocs.pdf">Building GS Billable APPTS adhocs</a>
+                                  <a  href="https://kx.health.mil/kj/kx2/DataQuality/Documents/E.%20CHCS%20Adhocs/Adhoc%20Training%20Guides/Building%20GS%20BILLABLE%20APPTS%20adhocs.pdf" target="_blank" rel="noreferrer">Building GS Billable APPTS adhocs</a>
                               </li>
                               <li>
-                                  <a href="https://kx.health.mil/kj/kx2/DataQuality/Documents/E.%20CHCS%20Adhocs/Adhoc%20Training%20Guides/GS%20NONBILL%20CODING%20AUDIT%20Adhoc%20Instructions.pdf">GS NONBILL Coding Audit Adhoc Instructions</a>
+                                  <a href="https://kx.health.mil/kj/kx2/DataQuality/Documents/E.%20CHCS%20Adhocs/Adhoc%20Training%20Guides/GS%20NONBILL%20CODING%20AUDIT%20Adhoc%20Instructions.pdf" target="_blank" rel="noreferrer">GS NONBILL Coding Audit Adhoc Instructions</a>
                               </li>
                               <li>
-                                  <a href="https://kx.health.mil/kj/kx2/DataQuality/Documents/E.%20CHCS%20Adhocs/Adhoc%20Training%20Guides/Use%20of%20GS%20MON%20TCON%20RESULTS%20RECD%20Ad%20Hoc%20to%20Monitor%20Network%20Results.pdf">Use of GS MON TCON Results Recieved Adhoc to Monitor Network Results</a>
+                                  <a href="https://kx.health.mil/kj/kx2/DataQuality/Documents/E.%20CHCS%20Adhocs/Adhoc%20Training%20Guides/Use%20of%20GS%20MON%20TCON%20RESULTS%20RECD%20Ad%20Hoc%20to%20Monitor%20Network%20Results.pdf" target="_blank" rel="noreferrer">Use of GS MON TCON Results Recieved Adhoc to Monitor Network Results</a>
                               </li>
                             </ul>
                       </li>
