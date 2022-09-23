@@ -1,9 +1,17 @@
-const ResourceItem = (props) =>{
-    return (
+import { Fragment } from "react";
+
+const ResourceItem = (props) => {
+  return (
+    <Fragment>
+      {props.items.map((item) => (
         <li>
-            <a href={props.link}  target="_blank" rel="noreferrer">{props.title}</a>
+          <a href={item.link} target="_blank" rel="noreferrer">
+            {item.title}
+          </a>
         </li>
-    )
+      ))}
+    </Fragment>
+  );
 };
 
 export default ResourceItem;
