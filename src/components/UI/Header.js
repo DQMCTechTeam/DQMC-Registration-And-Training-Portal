@@ -1,8 +1,29 @@
 import { Link } from "react-router-dom";
 import { Fragment } from "react";
 import classes from './Header.module.css'
+import Resources from './Resources/Resources';
 
 const Header = (props) => {
+    const trainingResources = [{
+        Resources:[{
+            title:'Adhoc Training Guides',
+            link:'',
+            items: [{
+                title:'Building GS Billable APPTS adhocs',
+                link:'https://kx.health.mil/kj/kx2/DataQuality/Documents/E.%20CHCS%20Adhocs/Adhoc%20Training%20Guides/Building%20GS%20BILLABLE%20APPTS%20adhocs.pdf',
+            },
+            {
+                title:'GS NONBILL Coding Audit Adhoc Instructions',
+                link:'https://kx.health.mil/kj/kx2/DataQuality/Documents/E.%20CHCS%20Adhocs/Adhoc%20Training%20Guides/GS%20NONBILL%20CODING%20AUDIT%20Adhoc%20Instructions.pdf',
+            },
+            {
+                title:'Use of GS MON TCON Results Recieved Adhoc to Monitor Network Results',
+                link:'https://kx.health.mil/kj/kx2/DataQuality/Documents/E.%20CHCS%20Adhocs/Adhoc%20Training%20Guides/Use%20of%20GS%20MON%20TCON%20RESULTS%20RECD%20Ad%20Hoc%20to%20Monitor%20Network%20Results.pdf'
+            },]
+        },]
+    }
+
+];
   return (
     <Fragment>
       <header class="navbar navbar-bright navbar-fixed-top" role="banner">
@@ -42,7 +63,7 @@ const Header = (props) => {
                   <ul>
                       <li>
                           <p className={classes.p}>Adhoc Training Guides</p>
-                          <ul>
+                          <ul>                      
                               <li>
                                   <a  href="https://kx.health.mil/kj/kx2/DataQuality/Documents/E.%20CHCS%20Adhocs/Adhoc%20Training%20Guides/Building%20GS%20BILLABLE%20APPTS%20adhocs.pdf" target="_blank" rel="noreferrer">Building GS Billable APPTS adhocs</a>
                               </li>
