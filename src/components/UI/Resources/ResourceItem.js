@@ -3,13 +3,15 @@ import { Fragment } from "react";
 const ResourceItem = (props) => {
   return (
     <Fragment>
-      {props.items.map((item) => (
-        <li>
-          <a href={item.link} target="_blank" rel="noreferrer">
-            {item.title}
-          </a>
-        </li>
-      ))}
+      {props.header.map((header) => {
+        return (
+          <li key={header.id}>
+            <a href={header.link} target="_blank" rel="noreferrer">
+              {header.title}
+            </a>
+          </li>
+        );
+      })}
     </Fragment>
   );
 };

@@ -3,18 +3,22 @@ import ResourceItem from "./ResourceItem";
 import classes from "./Resources.module.css";
 
 const Resources = (props) => {
-
-    console.log(`resources: ${props.resources}`);
+  console.log(`headers: ${props.headers}`);
   return (
     <Fragment>
-      {props.resources.map((resource) => (
-        <Fragment>
-          <p className={classes.p}>{resource.title}</p>
-          <ul>
-            <ResourceItem items={resource.resources} title={resource.title} link={resource.link} />
-          </ul>
-        </Fragment>
-      ))}
+      <ul>
+        {props.headers.map((header) => (
+          <li key={header.id}>
+            <p className={classes.p}>{header.title}</p>
+            <ul>
+              <ResourceItem
+                key={header.id}            
+                header={header.items}
+              />
+            </ul>
+          </li>
+        ))}
+      </ul>
     </Fragment>
   );
 };
