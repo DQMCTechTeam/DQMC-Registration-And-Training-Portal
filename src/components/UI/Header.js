@@ -75,15 +75,26 @@ const Header = (props) => {
                   <h2 className={classes.h2}>Register for Training:</h2>
                   <ul>
                     <li>
-                      <Link to="/dqmcTrainingRegistration?form=newDQManager">
-                        DQMC Training Registration{" "}
+                      <Link to="/dqmcTrainingRegistration">
+                        DQMC Training Registration
+                      </Link>
+                    </li>
+                    <li>
+                      <Link to="/poamCentralValidation">
+                        POAM Central Validation
                       </Link>
                     </li>
                   </ul>
-                  <h2 className={classes.h2}>Complete Our Survey:</h2>
+                  <h2 className={classes.h2}>Complete Our Questionnaire:</h2>
                   <ul>
                     <li>
-                      <Link to="/questionnaire">DQMC Training Survey </Link>
+                      <Link to="/questionnaire">DQMC Training Questionnaire </Link>
+                    </li>
+                  </ul>
+                  <h2 className={classes.h2}>Login to your Training and Information Portal:</h2>
+                  <ul>
+                    <li>
+                      <Link to="/login">Login here</Link>
                     </li>
                   </ul>
                 </div>

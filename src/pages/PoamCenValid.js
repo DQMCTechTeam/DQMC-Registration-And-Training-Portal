@@ -1,20 +1,19 @@
 import { Fragment } from "react";
-import Body from "../components/UI/Body";
 import Header from "../components/UI/Header";
+import Body from "../components/UI/Body";
 import Footer from "../components/UI/Footer";
+const PoamCenValid=()=>{
 
-const DQMCTrainingRegistration = () => {
-  return (
+return (
     <Fragment>
       <Header
         title={"Data Quality Training Registration and Information 2021"}
       />
-      <Body showLinks={false} showPoamCenValid={false} showDQMCTrainingRegistration={true} />
+      <Body showLinks={false} showPoamCenValid={true} showDQMCTrainingRegistration={false} />
 
       <Footer />
     </Fragment>
-  );
+);
+}
 
-};
-
-export default DQMCTrainingRegistration;
+export default PoamCenValid;

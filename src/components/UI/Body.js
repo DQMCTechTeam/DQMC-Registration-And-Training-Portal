@@ -1,9 +1,11 @@
 import Login from "./forms/Login";
 import { Fragment } from "react";
 import Poam from './forms/Poam';
-import PoamCenValid from "./forms/PoamCenValid";
 import Survey from "./forms/Survey";
 import './Body.css'
+import DQManager from "./forms/DQManager";
+import POAMCentralValidation from "./forms/POAMCentralValidation";
+// import DQMCTrainingRegistration from "../../pages/DQMCTrainingRegistration";
 const Body = (props) => {
   return (
     <Fragment>
@@ -26,8 +28,9 @@ const Body = (props) => {
 
                   </div>
                 )}
+                {props.showDQMCTrainingRegistration && <DQManager/>}
                 {props.showPoam && <Poam />}
-                {props.showPoamCenValid && <PoamCenValid />}
+                {props.showPoamCenValid && <POAMCentralValidation/>}
                 {props.showQuestionnare && <Survey/>}
               </div>
             </div>

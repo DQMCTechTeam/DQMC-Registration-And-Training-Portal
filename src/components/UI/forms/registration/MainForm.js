@@ -1,5 +1,5 @@
 import { Fragment } from "react";
-const PoamCenValid=()=>{
+const MainForm=(props)=>{
 
 return (
   <Fragment>
@@ -20,7 +20,7 @@ return (
             readonly
             name="trainingClass"
             id="trainingClass"
-            value="POAM and Central Validation"
+            value={props.title}
           />
         </div>
       </div>
@@ -160,4 +160,4 @@ return (
 );
 }
 
-export default PoamCenValid;
+export default MainForm;
